@@ -12,7 +12,7 @@ Examen de práctica interactivo para la materia **Bases de Datos**. Es una aplic
 6. Diseño distribuido: requerimientos funcionales/no funcionales, teorema CAP y ACID/BASE
 7. Consistencia, concurrencia y confirmación en 2 fases (PACELC, bloqueos, deadlocks, 2PC)
 
-45 preguntas en total, repartidas entre los siete temas.
+144 preguntas en total, repartidas entre los siete temas. No hay un tope fijo de preguntas: el banco creció para cubrir la guía de estudio completa, no al revés.
 
 ## Tipos de pregunta
 
@@ -59,7 +59,7 @@ examen-seguridad/
 ├── css/
 │   └── estilos.css     # Toda la presentación visual (colores, tipografía, layout)
 ├── js/
-│   ├── preguntas.js    # Datos: los temas (TOPICS) y las 45 preguntas (QUESTION_BANK)
+│   ├── preguntas.js    # Datos: los temas (TOPICS) y el banco de preguntas (QUESTION_BANK)
 │   └── app.js          # Lógica: temporizador, calificación, render de cada tipo, reintentos
 ├── .gitignore
 └── README.md
