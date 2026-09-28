@@ -136,7 +136,7 @@ function showScreen(name){
 
 // ---------- exam flow ----------
 
-// Arranca un examen completo: baraja las 45 preguntas y arranca el temporizador de 90 min.
+// Arranca un examen completo: baraja las preguntas (ver QUESTION_BANK en preguntas.js) y arranca el temporizador de 90 min.
 function startExam(){
   state.qById = {};
   QUESTION_BANK.forEach(function(q){ state.qById[q.id] = buildRuntimeFor(q); });
