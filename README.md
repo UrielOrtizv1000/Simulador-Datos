@@ -8,11 +8,20 @@ Examen de práctica interactivo para la materia **Bases de Datos**. Es una aplic
 2. DDL, DML y SQL aplicado
 3. Consultas multitabla (JOIN)
 4. Programación sobre datos: Stored Procedures, Functions y Triggers
-5. Bases de datos distribuidas: fundamentos y arquitecturas (cliente-servidor, P2P, clúster, federación, local/nube/híbrido)
-6. Diseño distribuido: requerimientos funcionales/no funcionales, teorema CAP y ACID/BASE
-7. Consistencia, concurrencia y confirmación en 2 fases (PACELC, bloqueos, deadlocks, 2PC)
+5. Bases de datos distribuidas: fundamentos, paralelismo y distribución (centralizada vs. distribuida, partición horizontal/vertical, replicación)
+6. Arquitecturas de almacenamiento distribuido (cliente-servidor, P2P, clúster, multibase/federada, local/nube/híbrido)
+7. Teorema CAP y PACELC
+8. Consistencia y concurrencia distribuida (fuerte/eventual, 2PL, marcas de tiempo, OCC)
+9. Escenarios: dado el negocio, sus clientes o sus datos, elegir la base de datos y la estrategia de distribución adecuadas
 
-144 preguntas en total, repartidas entre los siete temas. No hay un tope fijo de preguntas: el banco creció para cubrir la guía de estudio completa, no al revés.
+72 preguntas en total, repartidas entre los nueve temas. El contenido está construido directamente
+sobre `guia_datos.md` (la guía de repaso condensada del curso), sección por sección, para cubrirla
+a fondo sin arrastrar temas que esa guía no menciona (por eso no hay preguntas de ACID/BASE,
+OLTP/OLAP, 2PC ni detección de deadlocks: no están ahí). El tema 5 se separó en dos (fundamentos y
+arquitecturas) porque es la parte más extensa de la guía. El tema 9 (escenarios) agrupa las
+preguntas de opción múltiple del tipo "esta empresa maneja estos datos o estos clientes, ¿qué
+base de datos o qué distribución usarías?". No todos los temas usan todos los tipos de pregunta,
+pero el examen completo sí reparte los siete tipos que soporta el motor (ver abajo).
 
 ## Tipos de pregunta
 
@@ -21,7 +30,7 @@ Examen de práctica interactivo para la materia **Bases de Datos**. Es una aplic
 - **Completar** — escribir la palabra que falta (no distingue mayúsculas ni acentos).
 - **Relacionar** — unir cada término con su definición usando listas desplegables.
 - **Conectar** — unir cada término con su definición tocando primero uno de la izquierda y luego uno de la derecha (con color por pareja); pensado para celular y computadora.
-- **Diagrama** — completar una imagen (el triángulo de la CIA o las capas de defensa en profundidad) eligiendo la etiqueta correcta para cada espacio.
+- **Diagrama** — completar una imagen (el triángulo del teorema CAP) eligiendo la etiqueta correcta para cada vértice.
 - **Pregunta abierta** — se responde en texto libre; al terminar se muestra una respuesta modelo y tú marcas si la sabías o no.
 
 ## Funciones
@@ -59,7 +68,7 @@ examen-seguridad/
 ├── css/
 │   └── estilos.css     # Toda la presentación visual (colores, tipografía, layout)
 ├── js/
-│   ├── preguntas.js    # Datos: los temas (TOPICS) y el banco de preguntas (QUESTION_BANK)
+│   ├── preguntas.js    # Datos: los temas (TOPICS) y las 72 preguntas (QUESTION_BANK)
 │   └── app.js          # Lógica: temporizador, calificación, render de cada tipo, reintentos
 ├── .gitignore
 └── README.md
@@ -122,9 +131,9 @@ Usa exactamente la misma forma que `match` (un arreglo `pairs` de `{l, r}`); sol
 ```
 
 ### Diagrama (`diagram`) — completar una imagen
-Hay dos variantes de `diagramKind`: `'triangle'` (3 vértices) y `'layers'` (varias capas apiladas). Cada `slot` necesita una `key` única, y `pool` es la lista de etiquetas para elegir (puede incluir distractores). Esta edición del examen no usa preguntas de este tipo, pero el motor sigue soportándolo si se agrega uno nuevo:
+Hay dos variantes de `diagramKind`: `'triangle'` (3 vértices) y `'layers'` (varias capas apiladas). Cada `slot` necesita una `key` única, y `pool` es la lista de etiquetas para elegir (puede incluir distractores). Esta edición del examen usa `'triangle'` para el teorema CAP (ver `q56` en `preguntas.js`); `'layers'` sigue disponible si se agrega una pregunta que lo necesite:
 ```js
-{id:'q51', topic:'consistencia', type:'diagram', diagramKind:'triangle',
+{id:'q56', topic:'diseno', type:'diagram', diagramKind:'triangle',
   prompt:'Completa el triángulo del teorema CAP: elige la letra correcta para cada vértice.',
   slots:[
     {key:'top', pos:'top', label:'Vértice superior', correct:'Consistencia'},
