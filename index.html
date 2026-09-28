@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!--
+  index.html
+  Punto de entrada del Simulador de Bases de Datos. Solo contiene el esqueleto de las tres
+  pantallas (inicio, examen, resultados); todo el contenido se llena por JavaScript.
+  Carga primero preguntas.js (datos) y luego app.js (lógica), en ese orden.
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Bases de Datos</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- Pantalla de inicio: presentación, temas y botón para comenzar -->
+  <section id="screen-start">
+    <div class="hero">
+      <div class="eyebrow">Bases de Datos</div>
+      <h1>Simulador de Bases de Datos</h1>
+      <p class="lead">Examen de práctica con retroalimentación inmediata en cada pregunta. Cubre modelo relacional, SQL (DDL, DML, JOIN, programación) y bases de datos distribuidas, y al final puedes reintentar solo lo que hayas fallado hasta dominarlo.</p>
+
+      <div class="fact-row">
+        <div class="fact"><div class="num">45</div><div class="lbl">preguntas</div></div>
+        <div class="fact"><div class="num">90:00</div><div class="lbl">minutos</div></div>
+        <div class="fact"><div class="num">7</div><div class="lbl">temas</div></div>
+      </div>
+
+      <div class="topics" id="topic-chips"></div>
+
+      <button class="start-btn" id="btn-start">Iniciar examen</button>
+      <div class="start-note">El temporizador inicia en cuanto presiones el botón.</div>
+
+      <div class="rules">
+        <h3>Cómo funciona</h3>
+        <ul>
+          <li>En cuanto respondas una pregunta, te dice al instante si acertaste, cuál era la respuesta correcta y una breve explicación. Después la pregunta queda bloqueada.</li>
+          <li>En las preguntas de Conectar, toca un término de la izquierda y luego su concepto en la derecha para unirlos; puedes cambiar una unión antes de comprobar.</li>
+          <li>Las preguntas abiertas muestran una respuesta modelo para que marques si la sabías o no.</li>
+          <li>Al terminar verás tu porcentaje total, el desglose por tema y un botón para reintentar solo las que fallaste, las veces que necesites.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pantalla de examen: barra superior, mapa de preguntas y la pregunta actual -->
+  <section id="screen-exam" hidden>
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <div class="topbar">
+        <div class="timer mono" id="timer">90:00</div>
+        <span class="mode-pill" id="mode-pill" hidden>Reintento</span>
+        <div class="progress-txt" id="progress-txt">Pregunta 1 / 45</div>
+        <button class="finish-btn-top" id="btn-finish-top">Finalizar</button>
+      </div>
+
+      <div class="palette-wrap">
+        <button class="palette-toggle" id="palette-toggle" aria-expanded="false" aria-controls="palette-grid">
+          <span>Mapa de preguntas</span>
+          <span class="chev">▾</span>
+        </button>
+        <div class="palette-grid" id="palette-grid" hidden></div>
+      </div>
+
+      <div class="qcard" id="qcard"></div>
+
+      <div class="navrow">
+        <button class="navbtn" id="btn-prev">← Anterior</button>
+        <button class="navbtn ghost" id="btn-skip">Saltar pregunta →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pantalla de resultados: puntaje, reintento de falladas, desglose y revisión -->
+  <section id="screen-results" hidden>
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div class="retry-banner" id="retry-banner" hidden></div>
+
+      <div class="score-hero">
+        <div class="eyebrow">Resultado</div>
+        <div class="score-big" id="score-big">0%</div>
+        <div class="score-msg" id="score-msg"></div>
+        <div class="score-sub" id="score-sub"></div>
+      </div>
+
+      <div id="retry-cta-wrap"></div>
+
+      <div class="bars">
+        <h3>Desglose por tema</h3>
+        <div id="bars-list"></div>
+      </div>
+
+      <div class="review-toolbar">
+        <button class="toolbtn" id="btn-restart">Reiniciar examen completo</button>
+      </div>
+
+      <div class="review-group" id="review-list"></div>
+
+      <div class="review-toolbar">
+        <button class="toolbtn" id="btn-restart-2">Reiniciar examen completo</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="appfoot">Simulador de práctica · Bases de Datos</footer>
+</div>
+
+<script src="js/preguntas.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

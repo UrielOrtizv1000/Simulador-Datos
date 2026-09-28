@@ -1,0 +1,17 @@
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores / IDEs
+.vscode/
+.idea/
+*.swp
+
+# Por si en el futuro se agrega alguna herramienta con Node.js
+node_modules/
+npm-debug.log*
+
+# Material de estudio original (no debe subirse al repositorio)
+*.pdf
+guia.md
